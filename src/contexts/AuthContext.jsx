@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 // The initial value is null because when the app loads, we don't know the auth state yet.
 const AuthContext = createContext(null);
 
-// 2. Create the Provider Component
+// 2. Create the Provider Componen
 // This component will wrap parts of your app that need access to the auth state.
 // It manages the auth state (token, isAuthenticated) and provides functions to update it.
 export const AuthProvider = ({ children }) => {

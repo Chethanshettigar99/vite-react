@@ -20,7 +20,7 @@ const mockOrders = [
     { id: 'ORD017', customerName: 'Quinn Fabray', date: '2025-04-08', status: 'Delivered', amount: 132.10 },
     { id: 'ORD018', customerName: 'Ron Swanson', date: '2025-04-07', status: 'Processing', amount: 95.00 },
     { id: 'ORD019', customerName: 'Samantha Carter', date: '2025-04-14', status: 'Shipped', amount: 165.80 },
-    { id: 'ORD020', customerName: 'Tony Stark', date: '2025-04-13', status: 'Delivered', amount: 500.00 },
+    { id: 'ORD021', customerName: 'Tony Stark', date: '2025-04-13', status: 'Delivered', amount: 500.00 },
   ];
   
   export default mockOrders;
