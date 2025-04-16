@@ -1,0 +1,113 @@
+/* === SearchBar === */
+.search-bar {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .search-bar input {
+    padding: 0.5rem 1rem;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  /* === Pagination === */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    gap: 1rem;
+  }
+  
+  .pagination button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    font-weight: 500;
+  }
+  
+  /* === OrderList === */
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .order-table th,
+  .order-table td {
+    border: 1px solid #eee;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+  
+  .order-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+  }
+  
+  /* === OrderItem === */
+  .order-item td {
+    font-size: 0.95rem;
+    vertical-align: middle;
+  }
+  
+  .status {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-processing {
+    background-color: #ff9800;
+  }
+  
+  .status-shipped {
+    background-color: #2196f3;
+  }
+  
+  .status-delivered {
+    background-color: #4caf50;
+  }
+  
+  .status-cancelled {
+    background-color: #f44336;
+  }
+  
+  /* === Filters === */
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  
+  .filters label {
+    font-weight: 500;
+  }
+  
+  .filters select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
