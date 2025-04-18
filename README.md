@@ -29,9 +29,12 @@ This application provides a user interface to view a list of orders. Users can s
 * **Loading & Error States:** Displays messages during data fetching and if errors occur.
 * **Basic Authentication Flow:** Includes a placeholder logout button and mentions required credentials for access.
 
- try it out click on the link https://vite-react-eight-psi-78.vercel.app/ **
-    * use email* `test@example.com`
-    * use Password* `password`
+ try it out click on the link https://vite-react-eight-psi-78.vercel.app/ 
+    
+    use email* `test@example.com`
+   
+    use Password* `password`
+    
 ## Tech Stack
 
 * **React:** (v17+ or v18+) JavaScript library for building user interfaces.
