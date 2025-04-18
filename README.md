@@ -1,7 +1,7 @@
 # React + Vite
 # React Order Management Dashboard
 
-**[Try it out – click on the link](https://vite-react-eight-psi-78.vercel.app/)**
+**[Try the application out – click here ](https://vite-react-eight-psi-78.vercel.app/)**
 
 
 A simple React application for displaying, filtering, sorting, and managing customer orders. This project demonstrates various React concepts including state management (useState, useEffect, useMemo, useCallback), component composition, event handling, and conditional rendering.
