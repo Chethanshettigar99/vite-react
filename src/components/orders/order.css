@@ -1,113 +1,578 @@
-/* === SearchBar === */
-.search-bar {
-    margin: 1rem 0;
+/* === General Page Layout === */
+.orders-page {
+  padding: 2rem;
+  max-width: 1200px; /* Or your preferred max width */
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.orders-header h1 {
+  margin: 0;
+  color: #212529;
+  font-size: 1.8rem;
+}
+
+.logout-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+.error-message {
+  color: #dc3545;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+.loading-message,
+.no-orders-message {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+    font-style: italic;
+}
+
+
+/* === Controls: Search, Filters, Export === */
+.controls {
     display: flex;
-    justify-content: flex-start;
-  }
-  
-  .search-bar input {
-    padding: 0.5rem 1rem;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-  }
-  
-  /* === Pagination === */
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 0;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to top */
+    flex-wrap: wrap;
     gap: 1rem;
-  }
-  
-  .pagination button {
-    padding: 0.5rem 1rem;
-    border: none;
-    background-color: #007bff;
+    margin-bottom: 1.5rem;
+}
+
+/* SearchBar Specific */
+.search-bar {
+  flex-grow: 1; /* Allow search bar to take available space */
+  min-width: 250px; /* Minimum width */
+  max-width: 400px; /* Maximum width */
+}
+
+.search-bar input {
+  padding: 0.6rem 1rem;
+  width: 100%; /* Make input fill the container */
+  box-sizing: border-box; /* Include padding in width */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Grouping Filters and Actions */
+.filters-and-actions {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    align-items: center; /* Align filters and button */
+    gap: 1rem;
+}
+
+/* Filters Specific */
+.filters {
+  display: flex;
+  flex-wrap: wrap; /* Allow filters to wrap */
+  align-items: center;
+  gap: 1rem; /* Spacing between filter groups */
+  margin: 0; /* Reset margin as it's inside a flex group */
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between label and input */
+}
+
+.filters label {
+  font-weight: 500;
+  white-space: nowrap; /* Prevent labels from wrapping */
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.filters select,
+.filters .date-input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+/* Export Button Specific */
+.export-button {
+    padding: 0.6rem 1.2rem;
+    background-color: #17a2b8; /* Teal color */
     color: white;
-    font-weight: bold;
+    border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .pagination button:disabled {
-    background-color: #ccc;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+    height: fit-content; /* Align nicely with inputs */
+    align-self: center; /* Vertically center if items wrap differently */
+}
+
+.export-button:hover:not(:disabled) {
+    background-color: #138496;
+}
+.export-button:disabled {
+    background-color: #a1d1d8;
     cursor: not-allowed;
-  }
-  
-  .pagination span {
-    font-weight: 500;
-  }
-  
-  /* === OrderList === */
-  .order-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  .order-table th,
-  .order-table td {
-    border: 1px solid #eee;
-    padding: 0.75rem 1rem;
-    text-align: left;
-  }
-  
-  .order-table th {
-    background-color: #f9f9f9;
-    font-weight: bold;
-  }
-  
-  /* === OrderItem === */
-  .order-item td {
-    font-size: 0.95rem;
-    vertical-align: middle;
-  }
-  
-  .status {
-    padding: 0.3rem 0.6rem;
-    border-radius: 12px;
-    color: white;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
-  
-  .status-processing {
-    background-color: #ff9800;
-  }
-  
-  .status-shipped {
-    background-color: #2196f3;
-  }
-  
-  .status-delivered {
-    background-color: #4caf50;
-  }
-  
-  .status-cancelled {
-    background-color: #f44336;
-  }
-  
-  /* === Filters === */
-  .filters {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 1rem 0;
-  }
-  
-  .filters label {
-    font-weight: 500;
-  }
-  
-  .filters select {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
+}
+
+
+/* === Bulk Actions Bar === */
+.bulk-actions-bar {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
     border-radius: 6px;
-    font-size: 1rem;
-  }
-  
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Add transition */
+}
+
+/* Add animation for appearance if desired */
+/* .bulk-actions-bar.enter { ... } */
+
+
+.bulk-actions-bar span {
+    font-weight: 500;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.bulk-actions-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.bulk-action-button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.bulk-action-button.primary {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+.bulk-action-button.primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+.bulk-action-button.primary:disabled {
+     background-color: #6cafff;
+     border-color: #6cafff;
+     cursor: not-allowed;
+}
+
+
+.bulk-action-button.secondary {
+    background-color: #6c757d;
+    color: white;
+    border-color: #6c757d;
+}
+.bulk-action-button.secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+
+/* === Order List Table === */
+.order-table-container { /* Add a container if needed for overflow */
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+    margin-bottom: 1.5rem;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* margin-top: 1rem; Removed as container adds space */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: white; /* Ensure background */
+  min-width: 800px; /* Prevent excessive squeezing on small screens */
+}
+
+.order-table th,
+.order-table td {
+  border: 1px solid #eee;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap; /* Prevent wrapping in cells */
+}
+
+.order-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+  color: #343a40;
+  position: sticky; /* Make headers sticky */
+  top: 0; /* Stick to the top of the container */
+  z-index: 10; /* Ensure headers stay above rows */
+}
+
+/* Checkbox column width */
+.order-table th:first-child,
+.order-table td.checkbox-cell {
+    width: 30px;
+    text-align: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    white-space: nowrap; /* Prevent wrapping */
+    position: sticky; /* Make checkbox column sticky */
+    left: 0; /* Stick to the left */
+    background-color: #f9f9f9; /* Match header bg */
+    z-index: 11; /* Above regular header */
+}
+.order-table td.checkbox-cell {
+    background-color: #fff; /* Body cell background */
+    z-index: 5; /* Above row content but below header */
+}
+.order-item.selected td.checkbox-cell {
+    background-color: #eef6ff; /* Match selected row bg */
+}
+
+
+.order-table input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+
+/* Sortable Headers */
+.sortable-header {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.sortable-header:hover {
+    background-color: #f0f0f0;
+}
+
+.sort-indicator {
+    font-size: 0.8em;
+    margin-left: 5px;
+    color: #555;
+    display: inline-block; /* Ensure space is reserved */
+    width: 1em; /* Reserve space even if no indicator */
+    text-align: center;
+}
+
+
+/* === Order Item Row === */
+.order-item {
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.order-item:hover {
+    background-color: #f8f9fa; /* Subtle hover */
+}
+
+.order-item td {
+  font-size: 0.95rem;
+  color: #495057;
+}
+/* Clickable row indication moved to general .order-item */
+
+/* Selected Row Styling */
+.order-item.selected {
+    background-color: #eef6ff; /* Light blue background */
+}
+.order-item.selected:hover {
+    background-color: #ddebff; /* Slightly darker blue on hover */
+}
+
+
+/* Status Badge */
+.status {
+  padding: 0.3rem 0.7rem; /* Adjusted padding */
+  border-radius: 12px;
+  color: white;
+  font-size: 0.8rem; /* Slightly smaller */
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+  text-align: center;
+  min-width: 80px; /* Give statuses similar width */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.status-processing { background-color: #ff9800; } /* Orange */
+.status-shipped { background-color: #2196f3; }   /* Blue */
+.status-delivered { background-color: #4caf50; } /* Green */
+.status-cancelled { background-color: #f44336; } /* Red */
+/* Add other statuses if needed */
+
+
+/* === Pagination === */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem 0;
+  gap: 1rem;
+}
+
+.pagination button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: 500;
+  color: #495057;
+}
+
+
+/* === Order Details Modal === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Disable interaction when hidden */
+}
+
+.modal-overlay.active { /* Add 'active' class when shown */
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+.modal-content {
+  background-color: white;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95); /* Start slightly small */
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content { /* Animate in */
+    transform: scale(1);
+}
+
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #aaa;
+}
+.modal-close-button:hover {
+    color: #333;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.8rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.modal-section {
+    margin-bottom: 1.5rem;
+}
+
+.modal-section h4 {
+    margin-bottom: 0.75rem; /* Increased space */
+    color: #007bff; /* Use theme color */
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.3rem;
+}
+
+.modal-section p, .modal-item-list li {
+    margin-bottom: 0.4rem;
+    line-height: 1.6; /* Increased line height */
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.modal-section p strong {
+    color: #343a40;
+    min-width: 120px; /* Align labels better */
+    display: inline-block;
+    font-weight: 600;
+}
+
+.modal-item-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    margin-top: 0.5rem;
+}
+
+.modal-item-list li {
+    margin-bottom: 0.5rem; /* Increased spacing */
+    padding-left: 1.2rem;
+    position: relative;
+    border-bottom: 1px dashed #eee; /* Separator */
+    padding-bottom: 0.5rem;
+}
+.modal-item-list li:last-child {
+    border-bottom: none;
+}
+
+.modal-item-list li::before { /* Custom bullet */
+    content: '•';
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.2rem;
+    position: absolute;
+    left: 0;
+}
+
+
+/* === Responsive === */
+@media (max-width: 992px) {
+     .filters-and-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+     .export-button {
+        margin-left: 0;
+    }
+    .order-table {
+        min-width: 700px; /* Adjust min-width */
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-page {
+        padding: 1rem; /* Less padding */
+    }
+    .orders-header h1 {
+        font-size: 1.5rem;
+    }
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-bar {
+        max-width: none; /* Allow full width */
+    }
+    .filters-and-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+     .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-item {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .filters select,
+    .filters .date-input {
+        flex-grow: 1;
+    }
+     .export-button {
+        align-self: flex-end;
+        margin-top: 0.5rem;
+    }
+    .order-table th, .order-table td {
+        padding: 0.7rem 0.8rem; /* Adjust padding */
+        white-space: normal; /* Allow wrapping on mobile */
+    }
+     .order-table th:first-child,
+     .order-table td.checkbox-cell {
+        /* Ensure sticky works or remove if problematic on mobile */
+        position: static; /* Disable sticky column on mobile if needed */
+        background-color: inherit; /* Reset background */
+    }
+
+    .order-table {
+        font-size: 0.9rem;
+        min-width: auto; /* Remove min-width */
+    }
+    .bulk-actions-bar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    .bulk-actions-buttons {
+        justify-content: center;
+    }
+    .modal-content {
+        padding: 1.5rem;
+    }
+     .modal-content h2 {
+        font-size: 1.3rem;
+    }
+}

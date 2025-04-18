@@ -9,6 +9,7 @@ const LoginPage = ({ onLoginSuccess }) => {
       <h1>Login</h1>
       <LoginForm onLoginSuccess={onLoginSuccess} />
     </div>
+    
   );
 };
 

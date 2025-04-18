@@ -1,6 +1,6 @@
 // src/components/orders/Pagination.jsx
 import React from 'react';
-import './order.css'; // Add basic styling
+import './order.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePrevious = () => {
@@ -15,14 +15,18 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   };
 
-  // Basic pagination - could be enhanced to show page numbers etc.
+  // Basic pagination - could be enhanced (e.g., page numbers)
+  if (totalPages <= 1) {
+    return null; // Don't show pagination if only one page
+  }
+
   return (
     <div className="pagination">
-      <button onClick={handlePrevious} disabled={currentPage === 1}>
+      <button onClick={handlePrevious} disabled={currentPage === 1} aria-label="Previous Page">
         Previous
       </button>
       <span> Page {currentPage} of {totalPages} </span>
-      <button onClick={handleNext} disabled={currentPage === totalPages}>
+      <button onClick={handleNext} disabled={currentPage === totalPages} aria-label="Next Page">
         Next
       </button>
     </div>
