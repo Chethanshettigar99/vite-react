@@ -86,15 +86,15 @@ const OrdersPage = ({ onLogout }) => {
                 const startDate = new Date(dateRange.start);
                 startDate.setHours(0, 0, 0, 0); // Start of the day
                  if (!isNaN(startDate)) { // Check if date is valid
-                    result = result.filter(order => order.date >= startDate);
-                }
+                     result = result.filter(order => order.date >= startDate);
+                 }
             }
             if (dateRange.end) {
                 const endDate = new Date(dateRange.end);
                 endDate.setHours(23, 59, 59, 999); // End of the day
                  if (!isNaN(endDate)) { // Check if date is valid
-                    result = result.filter(order => order.date <= endDate);
-                }
+                     result = result.filter(order => order.date <= endDate);
+                 }
             }
         } catch (e) {
             console.error("Date Filtering Error:", e); // Handle potential date parsing errors
@@ -105,7 +105,7 @@ const OrdersPage = ({ onLogout }) => {
         if (searchTerm) {
             const lowerCaseSearch = searchTerm.toLowerCase().trim();
             if (lowerCaseSearch) {
-                 result = result.filter(order =>
+                result = result.filter(order =>
                     order.id.toLowerCase().includes(lowerCaseSearch) ||
                     order.customerName.toLowerCase().includes(lowerCaseSearch) ||
                     (order.customerEmail && order.customerEmail.toLowerCase().includes(lowerCaseSearch)) ||
@@ -251,68 +251,77 @@ const OrdersPage = ({ onLogout }) => {
             <div className="controls">
                 <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
                 <div className="filters-and-actions">
-                     <Filters
-                        statusFilter={statusFilter}
-                        onStatusChange={setStatusFilter}
-                        availableStatuses={uniqueStatuses}
-                        dateRange={dateRange}
-                        onDateChange={handleDateChange}
-                    />
-                    <ExportButton
-                        data={filteredOrders} // Export only filtered/sorted data
-                        filename={`orders_export_${new Date().toISOString().split('T')[0]}.csv`}
-                    />
+                         <Filters
+                             statusFilter={statusFilter}
+                             onStatusChange={setStatusFilter}
+                             availableStatuses={uniqueStatuses}
+                             dateRange={dateRange}
+                             onDateChange={handleDateChange}
+                         />
+                         <ExportButton
+                             data={filteredOrders} // Export only filtered/sorted data
+                             filename={`orders_export_${new Date().toISOString().split('T')[0]}.csv`}
+                         />
                 </div>
             </div>
 
              {/* --- Bulk Actions Bar (conditional) --- */}
              <BulkActionsBar
-                selectedCount={selectedOrderIds.size}
-                onMarkShipped={handleMarkSelectedShipped}
-                onClearSelection={handleClearSelection}
-            />
+                 selectedCount={selectedOrderIds.size}
+                 onMarkShipped={handleMarkSelectedShipped}
+                 onClearSelection={handleClearSelection}
+             />
 
 
-            {/* --- Main Content: Table or Messages --- */}
-            {loading && <p className="loading-message">Loading orders...</p>}
-            {error && <p className="error-message">{error}</p>}
+             {/* --- Main Content: Table or Messages --- */}
+             {loading && <p className="loading-message">Loading orders...</p>}
+             {error && <p className="error-message">{error}</p>}
 
-            {!loading && !error && (
-                <>
-                    <div className="order-table-container">
-                        <OrderList
-                           orders={currentOrders} // Pass only orders for the current page
-                           onSort={handleSort}
-                           sortConfig={sortConfig}
-                           onViewDetails={handleViewDetails}
-                           selectedOrderIds={selectedOrderIds}
-                           onSelectOrder={handleSelectOrder}
-                           onSelectAll={handleSelectAll}
-                           allFilteredOrderIds={allFilteredOrderIds} // Pass the Set of all filtered IDs
+             {!loading && !error && (
+                 <>
+                     <div className="order-table-container">
+                         <OrderList
+                             orders={currentOrders} // Pass only orders for the current page
+                             onSort={handleSort}
+                             sortConfig={sortConfig}
+                             onViewDetails={handleViewDetails}
+                             selectedOrderIds={selectedOrderIds}
+                             onSelectOrder={handleSelectOrder}
+                             onSelectAll={handleSelectAll}
+                             allFilteredOrderIds={allFilteredOrderIds} // Pass the Set of all filtered IDs
                          />
-                    </div>
+                     </div>
 
-                    {filteredOrders.length === 0 && !loading && (
-                        <p className="no-orders-message">No orders found matching your criteria.</p>
-                    )}
+                     {filteredOrders.length === 0 && !loading && (
+                         <p className="no-orders-message">No orders found matching your criteria.</p>
+                     )}
 
-                    {filteredOrders.length > 0 && totalPages > 1 && (
-                         <Pagination
-                              currentPage={currentPage}
-                              totalPages={totalPages}
-                              onPageChange={setCurrentPage}
-                          />
-                    )}
-                </>
+                     {filteredOrders.length > 0 && totalPages > 1 && (
+                          <Pagination
+                               currentPage={currentPage}
+                               totalPages={totalPages}
+                               onPageChange={setCurrentPage}
+                           />
+                     )}
+                 </>
              )}
 
              {/* --- Order Details Modal (conditional) --- */}
              {viewingOrder && (
-                <OrderDetailsModal
-                    order={viewingOrder}
-                    onClose={handleCloseModal}
-                 />
+                 <OrderDetailsModal
+                     order={viewingOrder}
+                     onClose={handleCloseModal}
+                  />
              )}
+            <footer>
+    <span>by Chethan</span>
+    <a href="https://github.com/Chethanshettigar99" target="_blank" rel="noopener noreferrer">
+        GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/chethan-shettigar-574b06267/" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+    </a>
+</footer>
         </div>
     );
 };
